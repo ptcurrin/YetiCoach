@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_column="3"
+    android:layout_span="3"
+    android:shrinkColumns="*"
+    android:stretchColumns="*">
+
+    <TableRow>
+
+        <LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="17dp" />
+        </LinearLayout>
+
+    </TableRow>
+
+    <TableRow>
+
+        <TextView
+            android:layout_height="17dp"
+            android:layout_column="0"
+            android:layout_span="3"
+            android:text="@string/welcome_comma" />
+    </TableRow>
+
+    <TableRow>
+
+        <TextView
+            android:id="@+id/tvWelcomeEmail"
+            android:layout_height="17dp"
+            android:layout_column="0"
+            android:layout_span="3"
+            android:text="" />
+    </TableRow>
+
+    <TableRow>
+
+        <TextView
+            android:id="@+id/tvWelcomePhone"
+            android:layout_height="17dp"
+            android:layout_column="0"
+            android:layout_span="3"
+            android:text="" />
+    </TableRow>
+
+    <TableRow>
+
+        <TextView
+            android:id="@+id/tvWelcomeUserId"
+            android:layout_height="17dp"
+            android:layout_column="0"
+            android:layout_span="3"
+            android:text="" />
+    </TableRow>
+</TableLayout>

@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/address_block"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_column="3"
+    android:layout_span="3"
+    android:shrinkColumns="*"
+    android:stretchColumns="*">
+
+    <TableRow>
+
+        <LinearLayout>
+            <TextView android:layout_width="match_parent"
+                android:layout_height="17dp"/>
+        </LinearLayout>
+
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_column="0"
+            android:layout_span="4">
+
+            <TextView
+                android:id="@+id/userFirstName"
+                android:layout_width="wrap_content"
+                android:layout_height="17dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="@string/space" />
+
+            <TextView
+                android:id="@+id/userLastName"
+                android:layout_width="wrap_content"
+                android:layout_height="17dp" />
+        </LinearLayout>
+
+
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="17dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/userStreet"
+            android:layout_height="17dp"
+            android:layout_column="0"
+            android:layout_span="4" />
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="17dp"
+        android:orientation="vertical">
+
+        <LinearLayout>
+
+            <TextView
+                android:id="@+id/userCity"
+                android:layout_width="wrap_content"
+                android:layout_height="17dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="@string/address_comma" />
+
+            <TextView
+                android:id="@+id/userState"
+                android:layout_width="wrap_content"
+                android:layout_height="17dp" />
+        </LinearLayout>
+
+
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/userZip"
+            android:layout_height="17dp"
+            android:layout_column="0"
+            android:layout_span="3" />
+
+    </TableRow>
+
+</TableLayout>

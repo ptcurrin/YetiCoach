@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="ships">
+        <item>Black Beard\'s Ride</item>
+        <item>Queen Anne\'s Revenge</item>
+        <item>The White Rocket</item>
+    </string-array>
+</resources>

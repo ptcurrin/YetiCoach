@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:shrinkColumns="*"
+    android:stretchColumns="*"
+    tools:context="paddysoft.yeticoach.MainActivity">
+
+
+    <TableRow android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_column="0"
+            android:layout_span="2">
+
+            <include layout="@layout/welcome_email"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_column="2"
+            android:layout_span="2">
+
+            <include
+                layout="@layout/address_block"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+    </TableRow>
+
+    <TableRow>
+        <TextView
+            android:text="Please Choose a League"
+            android:layout_span="4"
+            android:layout_column="0"
+            android:layout_height="50dp"
+            android:gravity="center"/>
+    </TableRow>
+
+    <TableRow
+        android:layout_height="match_parent"
+        android:layout_width="match_parent" >
+
+        <Spinner
+            android:id="@+id/spinnerLeagues"
+
+            android:layout_span="4"
+            android:layout_column="0">
+
+        </Spinner>
+
+    </TableRow>
+
+    <TableRow>
+
+        <Button
+            android:id="@+id/MainButtonEnterLeague"
+            android:text="@string/enter"
+            android:onClick="OnMainButtonEnterLeaguePressed"
+            android:layout_column="1"
+            android:layout_span="1"/>
+
+        <Button
+            android:id="@+id/MainButtonAddLeague"
+            android:text="@string/add"
+            android:onClick="OnMainButtonAddLeaguePressed"
+            android:layout_column="2"
+            android:layout_span="1"/>
+
+        <Button
+            android:id="@+id/MainButtonRemoveLeague"
+            android:text="@string/remove"
+            android:onClick="OnMainButtonRemoveLeaguePressed"
+            android:layout_column="3"
+            android:layout_span="1"/>
+
+    </TableRow>
+
+    <TableRow>
+        <TextView
+            android:id="@+id/MainTextViewTest"
+            android:text="@string/test"
+            android:layout_gravity="center"
+            android:layout_column="0"
+            android:layout_span="4"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </TableRow>
+
+</TableLayout>

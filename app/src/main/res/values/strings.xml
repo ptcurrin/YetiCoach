@@ -1,0 +1,46 @@
+<resources>
+    <string name="app_name">Yeti Coach</string>
+    <string name="account_sign_in_header">Account Sign In</string>
+    <string name="sign_in">Sign In</string>
+    <string name="sign_up_with_email">Sign Up with Email</string>
+    <string name="upper_lower_number_symbol">(UPPER, lower, number#, Symbol!)</string>
+    <string name="password">Password</string>
+    <string name="title_activity_login">Sign in</string>
+
+    <!-- Strings related to login -->
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password (optional)</string>
+    <string name="action_sign_in">Sign in or register</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="error_invalid_email">This email address is invalid</string>
+    <string name="error_invalid_password">This password is too short</string>
+    <string name="error_incorrect_password">This password is incorrect</string>
+    <string name="error_field_required">This field is required</string>
+    <string name="permission_rationale">"Contacts permissions are needed for providing email
+        completions."
+    </string>
+    <string name="yeticoach_authority">com.paddysoft.yeticoach</string>
+    <string name="yeti_coach_sign_in">Yeti Coach Sign In</string>
+    <string name="space">" "</string>
+    <string name="address_comma">", "</string>
+    <string name="welcome_comma">"Welcome, "</string>
+    <string name="testing">testing</string>
+    <string name="remove">Remove</string>
+    <string name="add">Add</string>
+    <string name="enter">Enter</string>
+    <string name="test">test</string>
+    <string name="alert_dialog_ok">OK</string>
+    <string name="alert_dialog_cancel">Cancel</string>
+    <string name="alert_dialog_confirm_enter_league">Enter chosen League?</string>
+    <string name="title_activity_league_administration">LeagueAdministrationActivity</string>
+    <string name="leagues">Leagues</string>
+    <string name="placeholder">placeholder</string>
+    <string name="league_colon">League:</string>
+    <string name="league_colon_space">League:</string>
+    <string name="administrator_colon_space">Administrator:</string>
+    <string name="sport_colon_space">Sport:</string>
+    <string name="minimum_age_colon_space">Minimum Age:</string>
+    <string name="maximum_age_colon_space">Maximum Age:</string>
+    <string name="begins_colon_space">Begins:</string>
+    <string name="ends_colon_space">Ends:</string>
+</resources>
