@@ -1,35 +1,46 @@
 package dataprovider;
 
-import android.content.AsyncTaskLoader;
-import android.content.Context;
-import android.content.Loader;
-import android.database.Cursor;
-import android.os.Handler;
-import android.util.Log;
+        import android.content.AsyncTaskLoader;
+        import android.content.Context;
+        import android.content.Loader;
+        import android.database.Cursor;
+        import android.os.Handler;
+        import android.util.Log;
 
 /**
  * Created by Patrick on 9/27/2016.
  */
 
-public class YLeagueLoader extends AsyncTaskLoader<Cursor>
+public class YUserLoader extends AsyncTaskLoader<Cursor>
 {
 
-    private String yUserId = "";
-    private String email = "";
-    private Cursor yCursor;
-    private YContentObserver yContentObserver;
+    String yUserId = "";
+    String email = "";
+    int y_id = -1;
+    Cursor yCursor;
+    YContentObserver yContentObserver;
+    private boolean checkingByEmail = false;
+    private boolean checkingBy_Id = false;
 
-
-    public YLeagueLoader(Context context, String email){
+    public YUserLoader(Context context, String email){
         super(context);
-        yContentObserver = new YContentObserver(new Handler());
+
         this.email = email;
+        checkingByEmail = true;
     }
+
+    public YUserLoader(Context context, int lid){
+        super(context);
+
+        this.y_id = lid;
+        checkingBy_Id = true;
+    }
+
 
     @Override
     public Cursor loadInBackground() {
 
-
+        if(checkingByEmail) {
             Cursor useridCursor = getContext().getContentResolver().query(
                     YetiCoachContract.Users.CONTENT_URI,
                     new String[]{"userid"},
@@ -47,13 +58,27 @@ public class YLeagueLoader extends AsyncTaskLoader<Cursor>
                         new String[]{yUserId},
                         null);
 
-
+                checkingByEmail = false;
                 if (yCursor != null && yCursor.getCount() > 0) {
                     return yCursor;
                 }
             }
+            checkingByEmail = false;
             return null;
+        }else if(checkingBy_Id){
 
+            yCursor = getContext().getContentResolver().query(YetiCoachContract.Leagues.CONTENT_URI,
+                    YetiCoachContract.Leagues.PROJECTION_ALL,
+                    "_id=?",
+                    new String[]{String.format(y_id + "")},
+                    null);
+            checkingBy_Id = false;
+            if (yCursor != null && yCursor.getCount() == 1) {
+                return yCursor;
+            }
+        }
+        checkingBy_Id = false;
+        return null;
     }
 
     @Override

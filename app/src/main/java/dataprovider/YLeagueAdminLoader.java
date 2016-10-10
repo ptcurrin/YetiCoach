@@ -2,58 +2,36 @@ package dataprovider;
 
 import android.content.AsyncTaskLoader;
 import android.content.Context;
-import android.content.Loader;
 import android.database.Cursor;
 import android.os.Handler;
-import android.util.Log;
 
 /**
- * Created by Patrick on 9/27/2016.
+ * Created by Patrick on 10/10/2016.
  */
 
-public class YLeagueLoader extends AsyncTaskLoader<Cursor>
-{
+public class YLeagueAdminLoader extends AsyncTaskLoader<Cursor> {
 
-    private String yUserId = "";
-    private String email = "";
+    private int y_id;
     private Cursor yCursor;
     private YContentObserver yContentObserver;
 
-
-    public YLeagueLoader(Context context, String email){
+    public YLeagueAdminLoader(Context context, int id){
         super(context);
         yContentObserver = new YContentObserver(new Handler());
-        this.email = email;
+        y_id = id;
     }
+
 
     @Override
     public Cursor loadInBackground() {
 
+        yCursor = getContext().getContentResolver().query(YetiCoachContract.Leagues.CONTENT_URI,
+                YetiCoachContract.Leagues.PROJECTION_ALL,
+                "_id=?",
+                new String[] { (y_id + "") },
+                null);
 
-            Cursor useridCursor = getContext().getContentResolver().query(
-                    YetiCoachContract.Users.CONTENT_URI,
-                    new String[]{"userid"},
-                    "email=?",
-                    new String[]{email},
-                    null);
-            if (useridCursor != null && useridCursor.getCount() == 1) {
-
-                useridCursor.moveToFirst();
-                yUserId = useridCursor.getString(useridCursor.getColumnIndex("userid"));
-
-                yCursor = getContext().getContentResolver().query(YetiCoachContract.Leagues.CONTENT_URI,
-                        YetiCoachContract.Leagues.PROJECTION_ALL,
-                        "userid=?",
-                        new String[]{yUserId},
-                        null);
-
-
-                if (yCursor != null && yCursor.getCount() > 0) {
-                    return yCursor;
-                }
-            }
-            return null;
-
+        return yCursor;
     }
 
     @Override
@@ -128,4 +106,3 @@ public class YLeagueLoader extends AsyncTaskLoader<Cursor>
         releaseResources(cursor);
     }
 }
-

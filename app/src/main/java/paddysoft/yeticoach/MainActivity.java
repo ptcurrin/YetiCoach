@@ -85,8 +85,8 @@ public class MainActivity extends AppCompatActivity
         cEmail = bundle.getString("Email");
 
 
-        yUserObserver = new YContentObserver(new Handler());
-        yLeaguesObserver = new YContentObserver(new Handler());
+//        yUserObserver = new YContentObserver(new Handler());
+//        yLeaguesObserver = new YContentObserver(new Handler());
         android.app.LoaderManager lm = getLoaderManager();
 
 //        getContentResolver().registerContentObserver(YetiCoachContract.Users.CONTENT_URI, true, yUserObserver);

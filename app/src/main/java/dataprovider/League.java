@@ -61,16 +61,7 @@ public class League {
 
         League l;
 
-        if(c.getCount() == 1) {
-
-            c.moveToFirst();
-        }else{
-            try {
-                throw new Exception("More than one League within the cursor");
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
+        c.moveToFirst();
 
         long startLong = c.getLong(c.getColumnIndex(DBHelper.LEAGUES_COL_START_DATE));
         Date startDate = new Date();

@@ -35,7 +35,7 @@
             android:name=".LeagueAdministrationActivity"
             android:label="@string/title_activity_league_administration"
             android:parentActivityName=".MainActivity"
-            android:theme="@style/AppTheme.AppBarOverlay">
+            android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="paddysoft.yeticoach.MainActivity" />

@@ -4,27 +4,34 @@ import android.app.LoaderManager;
 import android.content.Intent;
 import android.content.Loader;
 import android.database.Cursor;
+import android.graphics.Color;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.View;
 import android.widget.TextView;
 
-import org.w3c.dom.Text;
+import java.util.Date;
 
+import dataprovider.DBHelper;
 import dataprovider.League;
-import dataprovider.YLeagueLoader;
+import dataprovider.YLeagueAdminLoader;
 
 public class LeagueAdministrationActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor> {
 
-    private static final int LEAGUE_LOADER_ID = 0;
-    TextView testing;
-    private int lid = -1;
-    private League league;
+    private static final int LEAGUE_ADMIN_LOADER_ID = 10;
+    private League cLeague;
+    private android.app.LoaderManager lm;
+    private LoaderManager.LoaderCallbacks<Cursor> yLeagueAdminCallbacks;
+    private int y_id = -1;
 
-    private LoaderManager.LoaderCallbacks<Cursor> yLeaguesCallbacks;
+    //UI Controls
+    private TextView leagueName;
+    private TextView leagueSport;
+    private TextView leagueAdmin;
+    private TextView leagueMinAge;
+    private TextView leagueMaxAge;
+    private TextView leagueStart;
+    private TextView leagueEnd;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,47 +40,70 @@ public class LeagueAdministrationActivity extends AppCompatActivity implements L
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        Intent intent = getIntent();
-        lid = intent.getIntExtra("league", 0);
 
-        android.app.LoaderManager lm = getLoaderManager();
-        yLeaguesCallbacks = this;
-        lm.initLoader(LEAGUE_LOADER_ID, null, yLeaguesCallbacks);
+
+        Intent intent = getIntent();
+        y_id = intent.getIntExtra("league", 0);
+
+        yLeagueAdminCallbacks = this;
+        lm = getLoaderManager();
+        lm.initLoader(LEAGUE_ADMIN_LOADER_ID, null, yLeagueAdminCallbacks);
     }
 
     @Override
     public Loader<Cursor> onCreateLoader(int id, Bundle args) {
-
-        if (id == LEAGUE_LOADER_ID) {
-            return new YLeagueLoader(getApplicationContext(), lid);
+        if (LEAGUE_ADMIN_LOADER_ID == id) {
+            return new YLeagueAdminLoader(this.getApplicationContext(), y_id);
         }
         return null;
     }
 
     @Override
-    public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
-        switch(loader.getId()){
-            case LEAGUE_LOADER_ID:
+    public void onLoadFinished(Loader<Cursor> loader, Cursor c) {
 
-                league = League.cursorToLeague(data);
+        c.moveToFirst();
 
 
-                break;
-        }
+        int id = c.getInt(c.getColumnIndex(DBHelper.LEAGUES_COL_ID));
+        String leagueid = c.getString(c.getColumnIndex(DBHelper.LEAGUES_COL_LEAGUE_ID));
+        String name = c.getString(c.getColumnIndex(DBHelper.LEAGUES_COL_NAME));
+        String adminId = c.getString(c.getColumnIndex(DBHelper.LEAGUES_COL_USER_ID));
+        String sportId = c.getString(c.getColumnIndex(DBHelper.LEAGUES_COL_SPORT_ID));
+        int min = c.getInt(c.getColumnIndex(DBHelper.LEAGUES_COL_MIN_AGE));
+        int max = c.getInt(c.getColumnIndex(DBHelper.LEAGUES_COL_MAX_AGE));
+        Date sd = new Date();
+        sd.setTime(c.getLong(c.getColumnIndex(DBHelper.LEAGUES_COL_START_DATE)));
+
+        Date ed = new Date();
+        ed.setTime(c.getLong(c.getColumnIndex(DBHelper.LEAGUES_COL_END_DATE)));
+
+
+        leagueName = (TextView)findViewById(R.id.LeagueAdminLeagueName);
+        leagueSport = (TextView)findViewById(R.id.LeagueAdminSport);
+        leagueAdmin = (TextView)findViewById(R.id.LeagueAdminUser);
+        leagueMinAge = (TextView)findViewById(R.id.LeagueAdminMinAge);
+        leagueMaxAge = (TextView)findViewById(R.id.LeagueAdminMaxAge);
+        leagueStart = (TextView)findViewById(R.id.LeagueAdminStartDate);
+        leagueEnd = (TextView)findViewById(R.id.LeagueAdminEndDate);
+
+        leagueName.setText(name);
+        leagueSport.setText(sportId);
+        leagueAdmin.setText(adminId);
+        leagueMinAge.setText(min + "");
+        leagueMaxAge.setText(max + "");
+        leagueStart.setText(sd.toString());
+        leagueEnd.setText(ed.toString());
+
+        getLoaderManager().destroyLoader(LEAGUE_ADMIN_LOADER_ID);
     }
 
     @Override
     public void onLoaderReset(Loader<Cursor> loader) {
 
+        leagueName.setText("Reset");
+
     }
 }
+

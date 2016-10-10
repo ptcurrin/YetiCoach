@@ -34,7 +34,6 @@
     <string name="alert_dialog_confirm_enter_league">Enter chosen League?</string>
     <string name="title_activity_league_administration">LeagueAdministrationActivity</string>
     <string name="leagues">Leagues</string>
-    <string name="placeholder">placeholder</string>
     <string name="league_colon">League:</string>
     <string name="league_colon_space">League:</string>
     <string name="administrator_colon_space">Administrator:</string>
@@ -43,4 +42,5 @@
     <string name="maximum_age_colon_space">Maximum Age:</string>
     <string name="begins_colon_space">Begins:</string>
     <string name="ends_colon_space">Ends:</string>
+    <string name="placeholder">placeholder</string>
 </resources>
